@@ -7,7 +7,7 @@ import cv2
 import os
 
 st.set_page_config(page_title="Shirt Mockup Generator", layout="centered")
-st.title("👕 Shirt Mockup Generator with Batching")
+st.title("👕 Shirt Mockup Generator")
 
 st.markdown("""
 Upload multiple design PNGs and shirt templates.  
