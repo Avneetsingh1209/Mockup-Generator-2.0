@@ -7,7 +7,7 @@ import cv2
 import os
 
 st.set_page_config(page_title="Shirt Mockup Generator", layout="centered")
-st.title("👕 Shirt Mockup Generator")
+st.title("👕 Shirt Mockup Generator with Batching")
 
 st.markdown("""
 Upload multiple design PNGs and shirt templates.  
@@ -48,6 +48,14 @@ if design_files:
             key=f"name_input_{i}_{file.name}"
         )
         st.session_state.design_names[file.name] = custom_name
+
+# --- Batch Controls ---
+if design_files:
+    st.markdown("### 📦 Batch Processing Control")
+    total_designs = len(design_files)
+    batch_start = st.number_input("Start from Design #", min_value=1, max_value=total_designs, value=1)
+    batch_end = st.number_input("End at Design #", min_value=batch_start, max_value=total_designs, value=min(batch_start + 19, total_designs))
+    selected_batch = design_files[batch_start - 1: batch_end]
 
 # --- Bounding Box Detection ---
 def get_shirt_bbox(pil_image):
